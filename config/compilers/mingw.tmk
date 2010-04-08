@@ -1,11 +1,11 @@
-set gcc_bin_prefix i386-mingw32-
+set gcc_bin_prefix i586-mingw32msvc-
 
 # source gcc.tmk
 source [file join $::tmk::compilersConfigDir gcc.tmk]
 
 # set up for res module
 if {$__module == "res"} {
-    config set EXECUTABLE i386-mingw32-windres
+    config set EXECUTABLE i586-mingw32msvc-windres
 }
 
 set base_CFLAGS { -mthreads -DWINVER=0x0550 }
