@@ -38,8 +38,14 @@ namespace eval time {
 namespace eval filesystem {
 	config when_target os=osx {
 		config set LIBPATH /cross/osx/usr/lib
+    	config set LIBS {boost_filesystem}
 	}
-	config set LIBS {boost_filesystem}
+	config when_target os=linux {
+    	config set LIBS {boost_filesystem-mt}	
+	}
+    config when_target os=mswin {
+    	config set LIBS {boost_filesystem}
+    }
 }
 
 namespace eval regex {
@@ -210,6 +216,11 @@ namespace eval opengl {
 	    config set LDFLAGS { -lopengl32 }
 	    config set LIBS { opengl32 }
     }
+    
+    config when_target os=linux {
+        config set LDFLAGS { -lGL }
+        config set LIBS { GL }
+    }
 }
 
 namespace eval glut {
@@ -220,6 +231,11 @@ namespace eval glut {
 	config when_target os=mswin {
     	config set LDFLAGS { -lglut32 -lglu32 }
     	config set LIBS { glut32 glu32 }
+	}
+	
+	config when_target os=linux {
+    	config set LDFLAGS { -lglut }
+	    config set LIBS { glut }
 	}
 }
 
